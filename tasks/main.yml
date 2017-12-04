@@ -6,9 +6,9 @@
 
 - name: Configure alternative group
   command: xbps-alternatives -s "{{ cron_implementation }}" -g crond
-    
+  changed_when: false
+
 - name: Enable Daemon
   runit:
-    name: cron
+    name: crond
     enabled: true
-    state: started
