@@ -1,0 +1,14 @@
+---
+- name: Install Daemon
+  xbps:
+    pkg: "{{ cron_implementation }}"
+    state: present
+
+- name: Configure alternative group
+  command: xbps-alternatives -s "{{ cron_implementation }}" -g crond
+    
+- name: Enable Daemon
+  runit:
+    name: cron
+    enabled: true
+    state: started
